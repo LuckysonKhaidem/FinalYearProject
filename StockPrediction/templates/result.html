@@ -1,0 +1,148 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset = "utf-8">
+	<meta name = "viewport" content = "width=device-width, initial-scale=1">
+	<link rel = "stylesheet" href = "{% static 'css/bootstrap.min.css' %}">
+	<script src = "{% static 'js/jquery-2.2.1.js' %}"></script>
+	<script src = "{% static 'js/bootstrap.min.js' %}"></script>
+	<script src = "{% static 'js/jquery.animateNumber.min.js' %}"></script>
+	<script type = "text/javascript">
+		$(document).ready(function(){
+			$("#current_data").hide();
+			$("#predictionOutput").hide();
+			$("#show").click(function(){
+				$("#show").fadeOut();
+				$("#current_data").fadeIn();
+			});
+			$("#predict").click(function(){
+				$("#predictionOutput").fadeIn();
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top " id="menu">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse move-me">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ><a href="#home">HOME</a></li>
+                     <li><a href="#features-sec">MAIN</a></li>
+                     <li><a href="#contact-sec">CONTACT</a></li>
+                </ul>
+            </div>
+           
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+	  <div class = "container"  >    
+      <div class="col-sm-12">
+      <div class="well" style = "background-color:green; color:white;">
+        <h4>RESULTS</h4>
+        <p>{{ stock_name }} historical data was successfully fetched and a random forest classifier
+        has been trained to predict the direction of the stock price after {{ trading_day }} days</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well" style = "background-color:red; color:white;">
+            <h4>ACCURACY</h4>
+            <p>{{ accuracy }}%</p> 
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well" style = "background-color:blue; color:white;">
+            <h4>PRECISION</h4>
+            <p>{{ precision }}</p> 
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well" style = "background-color:pink; color:white;">
+            <h4>RECALL</h4>
+            <p>{{ recall }}</p> 
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>SPECIFICITY</h4>
+            <p>{{ specificity }}</p> 
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" align = "center" >
+          <div class="well">
+            <h4>
+            	 Today's Current Data 
+
+            </h4>
+            <p><a class="btn btn-primary btn-lg" role="button" id = "show" >Show</a></p>
+        	 <table class="table" id = "current_data">
+    		<thead>
+      		<tr>
+        		<th>Data</th>
+        		<th>Value</th>
+        	
+      		</tr>
+    		</thead>
+    		<tbody>
+      			<tr class="success">
+        			<td>Open</td>
+        			<td>{{ current_data.0 }}</td>
+        			
+      			</tr>
+      			<tr class="danger">
+        			<td>High</td>
+        			<td>{{ current_data.1 }}</td>
+        		
+      			</tr>
+      			<tr class="info">
+        			<td>Low</td>
+        			<td>{{ current_data.2 }}</td>
+        			
+      			</tr>
+      			<tr class="success">
+        			<td>Close</td>
+        			<td>{{ current_data.3 }}</td>
+        			
+      			</tr>
+      			<tr class="danger">
+        			<td>Volume</td>
+        			<td>{{ current_data.4 }}</td>
+        		
+      			</tr>
+    		</tbody>
+  		</table>
+          </div>
+        </div>
+      <div class="row">
+      	 <div class="col-sm-12" align = "center" >
+          <div class="well">
+          	<h4> Predict trend after <strong>{{ trading_day }}</strong> days</h4>
+          	<p><a class="btn btn-primary btn-lg" role="button" id = "predict" >Predict</a></p>
+          	<div id = "predictionOutput">
+          		{% if output == 1 %}
+          			<h5>The price is predicted to rise after {{ trading_day }} days </h5>
+          		{% else %}
+          			<h5> The price is predicted to fall after {{ trading_day }} days </h5>
+          		{% endif %}
+           	</div>
+          </div>
+      </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</div
+</body>
+</html>

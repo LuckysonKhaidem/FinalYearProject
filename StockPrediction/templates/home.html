@@ -1,0 +1,144 @@
+﻿{% load staticfiles %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Free Education Template</title>
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONT AWESOME CSS -->
+<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+     <!-- FLEXSLIDER CSS -->
+<link href="{% static 'css/flexslider.css' %}" rel="stylesheet" />
+    <!-- CUSTOM STYLE CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />    
+  <!-- Google	Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
+</head>
+<body >
+   
+ <div class="navbar navbar-inverse navbar-fixed-top " id="menu">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img class="logo-custom"  alt=""  /></a>
+            </div>
+            <div class="navbar-collapse collapse move-me">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ><a href="#home">HOME</a></li>
+                     <li><a href="#features-sec">MAIN</a></li>
+                     <li><a href="#contact-sec">CONTACT</a></li>
+                </ul>
+            </div>
+           
+        </div>
+    </div>
+      <!--NAVBAR SECTION END-->
+       <div class="home-sec" id="home" >
+           <div class="overlay">
+ <div class="container">
+           <div class="row text-center " >
+           
+               <div class="col-lg-12  col-md-12 col-sm-12">
+               
+                <div class="flexslider set-flexi" id="main-section" >
+                    <ul class="slides move-me">
+                        <!-- Slider 01 -->
+                        <li>
+                              <h3>Stock Market Prediction</h3>
+                           <h1>ENSEMBLE LEARNING</h1>
+                          
+                        </li>
+                        <!-- End Slider 01 -->
+                        
+                        <!-- Slider 02 -->
+                        <li>
+                            <h3>Stock Market Prediction</h3>
+                           <h1>RANDOM FOREST CLASSIFIER</h1>
+                            <!--  <a  href="#features-sec" class="btn btn-primary btn-lg" >
+                               GET AWESOME 
+                            </a>
+                             <a  href="#features-sec" class="btn btn-danger btn-lg" >
+                                FEATURE LIST
+                            </a> -->
+                        </li>
+                        <!-- End Slider 02 -->
+                    </ul>
+                </div>
+                   
+     
+              
+              
+            </div>
+                
+               </div>
+                </div>
+           </div>
+           
+       </div>
+       <!--HOME SECTION END-->   
+    <div  class="tag-line" >
+         <div class="container">
+           <div class="row  text-center" >
+           
+               <div class="col-lg-12  col-md-12 col-sm-12">
+               
+        <h2 data-scroll-reveal="enter from the bottom after 0.1s" ><i class="fa fa-circle-o-notch"></i> ENTER YOUR INPUT <i class="fa fa-circle-o-notch"></i> </h2>
+                   </div>
+               </div>
+             </div>
+        
+    </div>
+    <!--HOME SECTION TAG LINE END-->   
+         <div id="features-sec" class="container set-pad" >
+             <div class="row text-center">
+                 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+                        <form action = "result/" method = "post"> 
+      <table border = 0 align = "center"> {% csrf_token %}
+        <tr>
+          <td>SELECT STOCK:</td> 
+          <td>
+            <select name = "stock_name" id = "stock">
+              <option value = "AAPL"> APPLE </option>
+              <option value = "GE"> GE </option>
+              <option value = "AMS"> AMADEUS </option>
+              <option value = "NKE"> NIKE </option>
+            </select> 
+
+          </td>
+        </tr>
+        <tr>
+          <td>TRADING DAY:</td> 
+          <td><input type = "text" name = "trading_day" id = "stock"/></td>
+        </tr>
+
+      </table>
+    </br>
+      <input type = "submit" align = "center" class="btn btn-danger btn-lg">
+    </form>            
+                     
+                 </div>
+
+             </div>
+  
+   
+    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+    <!--  Core Bootstrap Script -->
+    <script src="/static/js/bootstrap.js"></script>
+    <!--  Flexslider Scripts --> 
+         <script src="/static/js/jquery.flexslider.js"></script>
+     <!--  Scrolling Reveal Script -->
+    <script src="/static/js/scrollReveal.js"></script>
+    <!--  Scroll Scripts --> 
+    <script src="/static/js/jquery.easing.min.js"></script>
+    <!--  Custom Scripts --> 
+         <script src="/static/js/custom.js"></script>
+</body>
+</html>

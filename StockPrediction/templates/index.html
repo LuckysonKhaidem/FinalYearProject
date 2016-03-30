@@ -1,0 +1,140 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset = "utf-8">
+	<meta name = "viewport" content = "width=device-width, initial-scale=1">
+	<link rel = "stylesheet" href = "{% static 'css/bootstrap.min.css' %}">
+	<script src = "{% static 'js/jquery-2.2.1.js' %}"></script>
+	<script src = "{% static 'js/bootstrap.min.js' %}"></script>
+	<script type = "text/javascript">
+		$(document).ready(
+			function(){
+				$("#info").hide();
+				$("#warn").hide();
+				$("#loading").hide()
+				$('#submit').click(function(){
+					var trading_day = $("#trading_day").val()
+					if (trading_day == "" || trading_day == null) {
+						
+						$("#warn").fadeIn();
+						$("#warn").delay(1000).fadeOut();
+						return false;
+					}
+					else
+					{
+						$("#loading").fadeIn();
+					}
+				});
+
+				$("#infobtn").click(function(){
+					$("#info").fadeIn();
+				});
+				$("#close").click(function(){
+					$("#info").fadeOut();
+				});
+			}
+			);
+	</script>
+</head>
+	<div class="navbar navbar-inverse navbar-fixed-top " id="menu">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse move-me">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ><a href="#home">HOME</a></li>
+                     <li><a href="#features-sec">MAIN</a></li>
+                     <li><a href="#contact-sec">CONTACT</a></li>
+                </ul>
+            </div>
+           
+        </div>
+    </div>
+    <div class ="overlay">
+    	<div style="background:transparent; background-color:lavender;" class="jumbotron">
+    		<div class = "container">
+    		<h1>Welcome!</h1>
+    		<p>This application predicts the direction of stock market prices using Random
+    		 	forest classifier</p>
+    		<p><a class="btn btn-primary btn-lg" role="button" id = "infobtn" >Learn more</a></p>
+    		</div>
+		</div>
+    </div>
+   
+<div class="container">
+  <h2>Select Stock</h2>
+  <form class="form-horizontal" role="form" id = "f1" action = "result/" method = "post"> {% csrf_token %}
+    <div class="form-group">
+      <label class = "control-label col-sm-2" for="Stock">Stock:</label>
+      <div class = "col-sm-4">
+      <select  class = "form-control "id="stock_symbol" name = "stock_symbol">
+
+      		  <option value = "AAPL"> APPLE </option>
+              <option value = "GE"> GE </option>
+              <option value = "AMS"> AMADEUS </option>
+              <option value = "NKE"> NIKE </option>
+       
+      </select>
+  	  </div>
+      
+  </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="trade">Trading Period:</label>
+      <div class="col-sm-4">          
+        <input type="number" class="form-control" id="trading_day" name = "trading_day" placeholder = "
+        Enter Trading Period" >
+      </div>
+    </div>
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" id = "submit" class="btn btn-primary" >Train</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class ="container">
+<div class="alert alert-warning" id = "warn">
+  <strong>Warning!</strong> Trading Day is not specified.
+</div>
+</div>
+</div>
+    <div class = "container" align = "center" id = "loading">
+    	<h3> Training.... </h3>
+    	<img src = "{% static 'img/loader_gif.gif' %}"/>
+
+    </div>
+<div class ="overlay" id = "info">
+    	<div style="background:transparent; background-color:green; color: white;" class="jumbotron text-center">
+    		<div class = "container">
+    		<h1>What is Random Forest?</h1>
+    		<p>Random forests is a notion of the general technique of random decision forests that are
+    		 an ensemble learning method for classification, regression and other tasks, that operate by
+    		  constructing a multitude of decision trees at training time and outputting the class that 
+    		  is the mode of the classes (classification) or mean prediction (regression) of the 
+    		  individual trees. Random decision forests correct for decision trees' habit of overfitting
+    		   to their training set.
+
+The algorithm for inducing Breiman's random forest was developed by Leo Breiman and Adele Cutler, and 
+"Random Forests" is their trademark. The method combines Breiman's "bagging" idea and the random 
+selection of features, introduced independently by Ho and Amit and Geman in order to construct a 
+collection of decision trees with controlled variance.
+
+The selection of a random subset of features is an example of the random subspace method, which, in Ho's
+ formulation, is a way to implement the "stochastic discrimination" approach to classification proposed 
+ by Eugene Kleinberg.</p>
+
+			<p><a class="btn btn-primary btn-lg" role="button" id = "close" >Close</a></p>
+    		</div>
+		</div>
+    </div>
+   
+
+</html>
